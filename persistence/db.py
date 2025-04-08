@@ -8,4 +8,3 @@ def get_connection():
         password="",
         database=""
     )
-    

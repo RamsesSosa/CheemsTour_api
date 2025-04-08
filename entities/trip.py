@@ -20,3 +20,17 @@ class Trip:
         finally:
             cursor.close()
             connection.close()
+    
+    @classmethod
+    def save(cls, trip):
+        try:
+            connection = get_connection()
+            cursor = connection.cursor()
+            cursor.execute('INSERT INTO trip (name, city, country) VALUES(%s,%s,%s)', (trip.name, trip.city, trip.country))
+            connection.commit
+            return cursor.lastrowid # Devuelve el ultimo ID insertado en ciudad
+        except Error as e:
+            return str(e)
+        finally: 
+            cursor.close()
+            connection.close()    
