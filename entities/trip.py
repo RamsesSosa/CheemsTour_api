@@ -26,8 +26,8 @@ class Trip:
         try:
             connection = get_connection()
             cursor = connection.cursor()
-            cursor.execute('INSERT INTO trip (name, city, country) VALUES(%s,%s,%s)', (trip.name, trip.city, trip.country))
-            connection.commit
+            cursor.execute('INSERT INTO trips (name, city, country) VALUES(%s,%s,%s)', (trip.name, trip.city, trip.country))
+            connection.commit()
             return cursor.lastrowid # Devuelve el ultimo ID insertado en ciudad
         except Error as e:
             return str(e)
