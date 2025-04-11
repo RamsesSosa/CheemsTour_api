@@ -10,7 +10,7 @@ def trips():
 
 @app.route('/trips', methods = ['POST'])
 def save_trip():
-    data = request.json
+    data = request.get_json()
     trip = Trip(name=data['name'], city = data['city'], country = data['country'])
     id = Trip.save(trip)
     success = id is not None
