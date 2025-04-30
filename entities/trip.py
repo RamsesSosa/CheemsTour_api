@@ -39,7 +39,7 @@ class Trip:
     def update(cls, trip_id, trip_data):
         try:
             connection = get_connection()
-            cursor = connection.cursor
+            cursor = connection.cursor()
             query = 'UPDATE trips SET name = %s, city = %s, country = %s WHERE id = %s'
             cursor.execute(query, (trip_data.name, trip_data.city, trip_data.country, trip_id))
             connection.commit()
@@ -54,8 +54,8 @@ class Trip:
     def delete(cls, trip_id):
         try: 
             connection = get_connection()
-            cursor = connection.cursor
-            cursor.excute('DELETE FROM trips WHERE id = %s', (trip_id))
+            cursor = connection.cursor()
+            cursor.execute('DELETE FROM trips WHERE id = %s', (trip_id, ))
             connection.commit()
             return cursor.rowcount > 0
         except Error as e:
